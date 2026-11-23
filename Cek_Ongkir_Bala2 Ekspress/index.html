@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cek Ongkir Bala2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="kotak-ongkir">
+    <h1>Cek Tarif Pengiriman</h1>
+    <p>Pilih Wilayah Tujuan Pengiriman Paket (Asal: Yogyakarta, Indonesia)</p>
+
+    <select id="Tujuan">
+      <optgroup label="Dalam Negeri">
+        <option value="dalam_kota">Dalam Kota (Yogyakarta)</option>
+        <option value="luar_kota">Luar Kota (Pulau Jawa)</option>
+        <option value="luar_pulau">Luar Pulau Jawa</option>
+      </optgroup>
+      <optgroup label="Luar Negeri">
+        <option value="asia">Asia</option>
+        <option value="oseania">Australia & Oseania</option>
+        <option value="eropa">Eropa</option>
+        <option value="amerika_utara">Amerika Utara</option>
+        <option value="amerika_selatan">Amerika Selatan</option>
+        <option value="afrika">Afrika</option>
+      </optgroup>
+    </select>
+    <br><br>
+    <button onclick="cekOngkir()">Cek Tarif</button>
+
+    <h2 id="hasilOngkir">Silahkan Pilih Tujuan Pengiriman</h2>
+  </div>
+
+  <script>
+    const daftarTarif = {
+      dalam_kota:      { tarif: "Rp 10.000",  estimasi: "1 hari" },
+      luar_kota:       { tarif: "Rp 20.000",  estimasi: "2-3 hari" },
+      luar_pulau:      { tarif: "Rp 45.000",  estimasi: "4-7 hari" },
+      asia:            { tarif: "Rp 120.000", estimasi: "8-14 hari" },
+      oseania:         { tarif: "Rp 150.000", estimasi: "8-14 hari" },
+      eropa:           { tarif: "Rp 250.000", estimasi: "10-18 hari" },
+      amerika_utara:   { tarif: "Rp 275.000", estimasi: "10-18 hari" },
+      amerika_selatan: { tarif: "Rp 325.000", estimasi: "12-21 hari" },
+      afrika:          { tarif: "Rp 300.000", estimasi: "12-21 hari" }
+    };
+
+    function cekOngkir() {
+      let wilayah = document.getElementById("Tujuan").value;
+      let data = daftarTarif[wilayah];
+      let infoTarif = "";
+
+      if (data) {
+        infoTarif = "Tarif: " + data.tarif + " (Estimasi " + data.estimasi + ")";
+      } else {
+        infoTarif = "Tarif belum tersedia untuk tujuan ini";
+      }
+
+      document.getElementById("hasilOngkir").innerText = infoTarif;
+    }
+  </script>
+</body>
+</html>
